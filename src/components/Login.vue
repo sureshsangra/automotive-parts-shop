@@ -90,7 +90,13 @@ export default {
           fb.auth().signInWithEmailAndPassword(this.email, this.password)
                         .then(() => {
                         $('#login').modal('hide')
-                          this.$router.replace('admin');  
+                        console.log(this.email)
+                        if(this.email.toLowerCase() == 'sureshsangra1991@gmail.com') {
+                            this.$router.replace('admin');
+                        } else {
+                            this.$router.replace('/');
+                        }
+                            
                         })
                         .catch(function(error) {
                             // Handle Errors here.
@@ -118,7 +124,7 @@ export default {
                     .catch(function(error) {
                         console.error("Error writing document: ", error);
                     });
-                    this.$router.replace('admin');
+                    this.$router.replace('/');
                 })
                 .catch(function(error) {
                 // Handle Errors here.
