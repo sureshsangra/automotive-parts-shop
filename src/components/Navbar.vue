@@ -25,12 +25,19 @@
         </ul>
       </div>
       <form class="form-inline my-2 my-lg-0">
-         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <a
           class="btn btn-outline-success my-2 my-sm-0"
           data-toggle="modal"
           data-target="#login"
+          v-if="userAuth"
           >Login</a
+        >
+        <a
+          class="btn btn-outline-success my-2 my-sm-0"
+          data-toggle="modal"
+          @click="logout()"
+          v-if="user && user.email.length"
+          >Logout</a
         >
         <a
           class="btn btn-outline-info border-0 mx-2 my-2 my-sm-0"
@@ -45,21 +52,49 @@
 </template>
 
 <script>
+import { fb } from "../firebase";
 export default {
   name: "Navbar",
   props: {
     msg: String,
   },
   components: {},
+  data() {
+    return {
+      user: undefined,
+    };
+  },
+
+  computed: {
+    userAuth: function() {
+      if(this.user == null) {
+        return true;
+      }
+    }
+  },
 
   methods: {
-     editModal() {
-    	$('#login').modal('show');
+    editModal() {
+      $("#login").modal("show");
+    },
+    logout() {
+      fb.auth()
+        .signOut()
+        .then(() => {
+          this.$router.replace("/");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
 
+  created() {
+    console.log(this.userAuth, 'UA')
+    this.user = fb.auth().currentUser;
+    console.log(this.user);
+  },
 };
-
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
