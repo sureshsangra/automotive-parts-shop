@@ -43,4 +43,5 @@ export default {
     height: 500px;
     text-align: left;
   }
+  
 </style>

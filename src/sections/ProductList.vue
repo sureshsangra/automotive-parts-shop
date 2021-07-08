@@ -69,4 +69,12 @@ data(){
         background: #f2f2f2;
         padding-bottom: 3rem;
     }
+    .product-item {
+      margin-top: 2rem;
+    }
+    @media only screen and (max-width: 768px) {
+      .products {
+        margin-top: 20rem;
+      }
+    }
 </style>
