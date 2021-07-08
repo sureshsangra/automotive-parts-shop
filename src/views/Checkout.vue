@@ -31,12 +31,12 @@
 
                    
                     <form>
-                    <!-- <card class='stripe-card'
+                    <card class='stripe-card'
                         :class='{ complete }'
                         stripe='pk_test_XXXXXXXXXXXXXXXXXXXXXXXX'
                         :options='stripeOptions'
                         @change='complete = $event.complete'
-                        /> -->
+                        />
 
                         <button class='pay-with-stripe btn btn-primary mt-4' @click='pay' >Pay with credit card</button>
                     
@@ -61,13 +61,13 @@ export default {
   },
   components: { Card },
   methods: {
-    pay() {
-      // createToken returns a Promise which resolves in a result object with
-      // either a token or an error key.
-      // See https://stripe.com/docs/api#tokens for the token object.
-      // See https://stripe.com/docs/api#errors for the error object.
-      // More general https://stripe.com/docs/stripe.js#stripe-create-token.
-      createToken().then((data) => console.log(data.token));
+   pay() {
+      Toast.fire({
+        type: "success",
+        title: "Order has been placed sucessfully.",
+      });
+      this.$store.state.cart = [];
+      this.$router.push("/");
     },
   },
 };

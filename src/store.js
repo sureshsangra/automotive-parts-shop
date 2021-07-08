@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { fb } from "./firebase";
 Vue.use(Vuex)
-
-let cart = window.localStorage.getItem('cart');
+let cart
+if(fb.auth().currentUser)
+ cart = window.localStorage.getItem('cart');
 
 
 

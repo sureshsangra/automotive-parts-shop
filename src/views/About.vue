@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <navbar></navbar>
+    <Navbar></Navbar>
     
     <div class="container h-100">
       <div class="row p-5 h-100 justify-content-center align-items-center">
